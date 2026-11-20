@@ -42,6 +42,10 @@ def add_expense(current_expenses):
         print(f"Помилка: {e}")
         return current_expenses, None
 
+def show_balance(income, expenses):
+    balance = income - expenses
+    print(f"Баланс: {balance} PLN")
+
 while True:
     show_menu()
     choice = input("\nВиберіть дію: ")
@@ -59,8 +63,7 @@ while True:
             operation_cost = {"type": "expense", "amount": costs_amount}
             history_operations.append(operation_cost)
     elif choice == "3":
-        balance = user_income - user_costs
-        print(balance)
+        show_balance(user_income, user_costs)
     elif choice == "4":
         if history_operations:
             for history_operation in history_operations:
