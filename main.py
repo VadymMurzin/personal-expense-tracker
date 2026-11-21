@@ -46,6 +46,13 @@ def show_balance(income, expenses):
     balance = income - expenses
     print(f"Баланс: {balance} PLN")
 
+def show_history(operations):
+    if operations:
+        for history_operation in operations:
+            print(f'{history_operation["type"]}: {history_operation["amount"]} PLN')
+    else:
+        print("Історія операцій порожня")
+
 while True:
     show_menu()
     choice = input("\nВиберіть дію: ")
@@ -65,10 +72,6 @@ while True:
     elif choice == "3":
         show_balance(user_income, user_costs)
     elif choice == "4":
-        if history_operations:
-            for history_operation in history_operations:
-                print(f'{history_operation["type"]}: {history_operation["amount"]} PLN')
-        else:
-            print("Історія операцій порожня")
+        show_history(history_operations)
     else:
         print("Невідома команда. Спробуйте ще раз.")
