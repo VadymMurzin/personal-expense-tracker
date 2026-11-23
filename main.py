@@ -8,10 +8,6 @@ def show_menu():
     4. Історія операцій
     5. Вихід""")
 
-user_income = Decimal("0")
-user_costs = Decimal("0")
-history_operations = []
-
 def add_income(current_income):
     try:
         income_amount = Decimal(input("Введіть дохід: "))
@@ -53,25 +49,34 @@ def show_history(operations):
     else:
         print("Історія операцій порожня")
 
-while True:
-    show_menu()
-    choice = input("\nВиберіть дію: ")
-    if choice == "5":
-        print("До побачення!")
-        break
-    elif choice == "1":
-        user_income, income_amount = add_income(user_income)
-        if income_amount is not None:
-            operation_income = {"type": "income", "amount": income_amount}
-            history_operations.append(operation_income)
-    elif choice == "2":
-        user_costs, costs_amount = add_expense(user_costs)
-        if costs_amount is not None:
-            operation_cost = {"type": "expense", "amount": costs_amount}
-            history_operations.append(operation_cost)
-    elif choice == "3":
-        show_balance(user_income, user_costs)
-    elif choice == "4":
-        show_history(history_operations)
-    else:
-        print("Невідома команда. Спробуйте ще раз.")
+def main():
+    user_income = Decimal("0")
+    user_costs = Decimal("0")
+    history_operations = []
+
+    while True:
+        show_menu()
+        choice = input("\nВиберіть дію: ")
+        if choice == "5":
+            print("До побачення!")
+            break
+        elif choice == "1":
+            user_income, income_amount = add_income(user_income)
+            if income_amount is not None:
+                operation_income = {"type": "income", "amount": income_amount}
+                history_operations.append(operation_income)
+        elif choice == "2":
+            user_costs, costs_amount = add_expense(user_costs)
+            if costs_amount is not None:
+                operation_cost = {"type": "expense", "amount": costs_amount}
+                history_operations.append(operation_cost)
+        elif choice == "3":
+            show_balance(user_income, user_costs)
+        elif choice == "4":
+            show_history(history_operations)
+        else:
+            print("Невідома команда. Спробуйте ще раз.")
+
+
+if __name__ == "__main__":
+    main()
